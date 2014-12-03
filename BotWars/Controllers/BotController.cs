@@ -37,9 +37,6 @@ namespace BotWars.Controllers
                 _log.Info(formItem.Key + ":" + formItem.Value);
             }
 
-
-            _log.Info(createBotForm.ToString());
-
             var bot = new Bot(
                 createBotForm.OpponentName, 
                 Convert.ToInt32(createBotForm.StartingChipCount),
@@ -66,7 +63,6 @@ namespace BotWars.Controllers
         [HttpPost]
         public HttpResponseMessage Update(UpdateForm updateForm)
         {
-            _log.Info(updateForm);
             if (updateForm != null && updateForm.COMMAND != null)
             {
                 if (updateForm.DATA == null)
