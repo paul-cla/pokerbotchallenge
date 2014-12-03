@@ -74,6 +74,13 @@ namespace BotWars.Services
                     data == "5")
                 {
                     bot.NextMove = "FOLD";
+                } 
+                
+                if (data == "8" ||
+                    data == "9" ||
+                    data == "10")
+                {
+                    bot.NextMove = "CALL";
                 }
             }
 
