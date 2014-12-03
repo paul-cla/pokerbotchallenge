@@ -81,7 +81,7 @@ namespace BotWars.Services
                     bot.NextMove = "BET:" + bot.ChipCount / 4;
                     bot.ChipCount -= bot.ChipCount / 4;
                 }
-                if (data == "6")
+                if (data == "6" || data == "7"  )
                 {
                     bot.NextMove = "BET";
                     bot.ChipCount -= 1;
@@ -97,7 +97,7 @@ namespace BotWars.Services
                 
                 if (data == "8" ||
                     data == "9" ||
-                    data == "10")
+                    data == "T")
                 {
                     bot.NextMove = "CALL";
                 }
