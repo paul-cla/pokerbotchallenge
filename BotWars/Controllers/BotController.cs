@@ -31,7 +31,7 @@ namespace BotWars.Controllers
         {
             return new HttpResponseMessage
                 {
-                    Content = new StringContent(Moves.CALL.ToString())
+                    Content = new StringContent(_botManager.Move())
                 };
         }
         

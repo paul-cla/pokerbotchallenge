@@ -5,5 +5,6 @@ namespace BotWars.Services
     public interface IBotManager
     {
         void AddBot(Bot bot);
+        string Move();
     }
 }
