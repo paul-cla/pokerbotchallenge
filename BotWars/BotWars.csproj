@@ -145,10 +145,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BotController.cs" />
-    <Compile Include="Models\CreateBot.cs" />
+    <Compile Include="Models\Bot.cs" />
+    <Compile Include="Models\CreateBotForm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

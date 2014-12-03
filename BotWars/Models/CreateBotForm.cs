@@ -1,6 +1,6 @@
 ﻿namespace BotWars.Models
 {
-    public class CreateBot
+    public class CreateBotForm
     {
         // ReSharper disable InconsistentNaming
         public string HAND_LIMIT { get; set; }
