@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 using BotWars.Models;
 
 namespace BotWars.Controllers
@@ -9,23 +10,26 @@ namespace BotWars.Controllers
     public class BotController : ApiController
     {
         private Bot _bot;
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public HttpResponseMessage Start(CreateBotForm createBotForm)
         {
             _bot = new Bot(createBotForm.OPPONENT_NAME, Convert.ToInt32(createBotForm.STARTING_CHIP_COUNT), Convert.ToInt32(createBotForm.HAND_LIMIT));
             return new HttpResponseMessage(HttpStatusCode.Created);
         }
         
-        [HttpGet]
-        public string Move()
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage Move()
         {
-            return Moves.CALL.ToString();
+            return new HttpResponseMessage()
+                {
+                    Content = new StringContent(Moves.CALL.ToString())
+                };
         }
         
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public HttpResponseMessage Update()
         {
-            return new HttpResponseMessage((HttpStatusCode) 418);
+            return new HttpResponseMessage((HttpStatusCode) 200);
         }
 
     }
