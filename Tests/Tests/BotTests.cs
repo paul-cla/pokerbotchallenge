@@ -31,7 +31,7 @@ namespace Tests
 
             var move = bot.Move();
 
-            Assert.That(move, Is.EqualTo(Moves.CALL));
+            Assert.That(move, Is.EqualTo("CALL"));
         }
     }
 }

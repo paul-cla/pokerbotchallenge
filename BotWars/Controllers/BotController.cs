@@ -20,12 +20,15 @@ namespace BotWars.Controllers
         [System.Web.Http.HttpPost]
         public HttpResponseMessage Start(CreateBotForm createBotForm)
         {
-            
-             var bot = new Bot(createBotForm.OPPONENT_NAME, Convert.ToInt32(createBotForm.STARTING_CHIP_COUNT), Convert.ToInt32(createBotForm.HAND_LIMIT));
+
+            var bot = new Bot(createBotForm.OPPONENT_NAME, Convert.ToInt32(createBotForm.STARTING_CHIP_COUNT), Convert.ToInt32(createBotForm.HAND_LIMIT));
             _botManager.AddBot(bot);
-            return new HttpResponseMessage(HttpStatusCode.Created);
+            return new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.Created
+                };
         }
-        
+
         [System.Web.Http.HttpGet]
         public HttpResponseMessage Move()
         {
@@ -34,12 +37,21 @@ namespace BotWars.Controllers
                     Content = new StringContent(_botManager.Move())
                 };
         }
-        
-        [System.Web.Http.HttpPost]
-        public HttpResponseMessage Update()
-        {
-            return new HttpResponseMessage((HttpStatusCode) 200);
-        }
 
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage Update(UpdateForm updateForm)
+        {
+            if (updateForm != null && updateForm.COMMAND != null)
+            {
+                if (updateForm.DATA == null)
+                {
+                    updateForm.DATA = string.Empty;
+                }
+
+                _botManager.Update(updateForm.COMMAND, updateForm.DATA);
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        }
     }
 }

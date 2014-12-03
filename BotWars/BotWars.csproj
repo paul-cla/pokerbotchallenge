@@ -163,7 +163,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BotController.cs" />
+    <Compile Include="Models\UpdateForm.cs" />
     <Compile Include="Services\BotManager.cs" />
+    <Compile Include="Services\BotNotCreatedException.cs" />
     <Compile Include="Services\IBotManager.cs" />
     <Compile Include="Models\Bot.cs" />
     <Compile Include="Models\CreateBotForm.cs" />

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BotManagerTests.cs" />
     <Compile Include="BotTests.cs" />
     <Compile Include="ObjectCacheExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

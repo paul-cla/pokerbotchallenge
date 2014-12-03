@@ -6,5 +6,6 @@ namespace BotWars.Services
     {
         void AddBot(Bot bot);
         string Move();
+        void Update(string command, string data);
     }
 }

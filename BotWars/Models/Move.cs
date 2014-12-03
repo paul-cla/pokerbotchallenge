@@ -1,7 +1,17 @@
 ﻿namespace BotWars.Models
 {
-    public enum Moves
+    public class Moves
     {
-        CALL
+        private string _move;
+
+        public Moves(string move)
+        {
+            _move = move;
+        }
+
+        public string Move
+        {
+            get { return _move; }
+        }
     }
 }
