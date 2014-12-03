@@ -13,7 +13,7 @@ namespace Tests
             const int startingChipCount = 300;
             const int handLimit = 100;
 
-            var bot = new Bot(name, startingChipCount, handLimit);
+            var bot = new Bot(name, startingChipCount, handLimit, 2, 1);
 
             Assert.That(bot.Name, Is.EqualTo(name));
             Assert.That(bot.ChipCount, Is.EqualTo(300));
@@ -27,7 +27,7 @@ namespace Tests
             const int startingChipCount = 300;
             const int handLimit = 100;
 
-            var bot = new Bot(name, startingChipCount, handLimit);
+            var bot = new Bot(name, startingChipCount, handLimit, 2, 1);
 
             var move = bot.Move();
 

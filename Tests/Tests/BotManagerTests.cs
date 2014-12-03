@@ -13,7 +13,7 @@ namespace Tests
         [Test]
         public void should_manage_a_bot()
         {
-            var bot = new Bot("Bot", 1, 1);
+            var bot = new Bot("Bot", 1, 1, 2, 1);
             var botmanager = new BotManager(null);
             botmanager.AddBot(bot);
 
@@ -34,7 +34,7 @@ namespace Tests
         [Test]
         public void should_bet_max_if_ace()
         {
-            var bot = new Bot("Bot", 10, 1);
+            var bot = new Bot("Bot", 10, 1, 2, 1);
             var botmanager = new BotManager();
             botmanager.AddBot(bot);
 
@@ -62,7 +62,7 @@ namespace Tests
         [TestCase("A", "BET:10", 0)]
         public void should_bet(string card, string move, int chipCount)
         {
-            var bot = new Bot("Bot", 10, 1);
+            var bot = new Bot("Bot", 10, 1, 2, 1);
             var botmanager = new BotManager();
             botmanager.AddBot(bot);
 
@@ -78,7 +78,7 @@ namespace Tests
         [Test]
         public void should_bet_max_twice_with_two_aces_and_a_chip_win()
         {
-            var bot = new Bot("Bot", 10, 1);
+            var bot = new Bot("Bot", 10, 1, 2, 1);
             var botmanager = new BotManager();
             botmanager.AddBot(bot);
 
@@ -103,7 +103,7 @@ namespace Tests
         [Test]
         public void should_increase_chip_count_if_recieved()
         {
-            var bot = new Bot("Bot", 10, 1);
+            var bot = new Bot("Bot", 10, 1, 2, 1);
             var botmanager = new BotManager();
             botmanager.AddBot(bot);
 
@@ -118,11 +118,26 @@ namespace Tests
         [Test]
         public void should_subtract_a_chip_if_blind()
         {
-            var bot = new Bot("Bot", 10, 1);
+            var bot = new Bot("Bot", 10, 1, 2, 1);
             var botmanager = new BotManager();
             botmanager.AddBot(bot);
 
             const string command = "POST_BLIND";
+            string data = string.Empty;
+
+            botmanager.Update(command, data);
+
+            Assert.That(botmanager.Bot.ChipCount, Is.EqualTo(8));
+        } 
+        
+        [Test]
+        public void should_subtract_a_chip_if_button()
+        {
+            var bot = new Bot("Bot", 10, 1, 2, 1);
+            var botmanager = new BotManager();
+            botmanager.AddBot(bot);
+
+            const string command = "RECEIVE_BUTTON";
             string data = string.Empty;
 
             botmanager.Update(command, data);

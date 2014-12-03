@@ -2,10 +2,12 @@
 {
     public class CreateBotForm
     {
-        // ReSharper disable InconsistentNaming
-        public string HAND_LIMIT { get; set; }
-        public string OPPONENT_NAME { get; set; }
-        public string STARTING_CHIP_COUNT { get; set; }
-        // ReSharper restore InconsistentNaming
+        public string HandLimit { get; set; }
+        public string OpponentName { get; set; }
+        public string StartingChipCount { get; set; }
+        public string BigBlind { get; set; }
+        public string SmallBlind { get; set; }
+
     }
+
 }

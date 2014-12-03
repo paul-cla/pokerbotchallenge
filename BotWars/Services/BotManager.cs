@@ -110,7 +110,17 @@ namespace BotWars.Services
 
             if (command == "POST_BLIND")
             {
-                bot.ChipCount -= 1;
+                bot.ChipCount -= bot.BigBlind;
+            }
+
+            if (command == "RECEIVE_BUTTON")
+            {
+                bot.ChipCount -= bot.SmallBlind;
+            }
+
+            if (command == "GAME_OVER")
+            {
+                _log.Info("===================================================================================================");
             }
 
             _cache.Set("Bot", bot, new CacheItemPolicy());
