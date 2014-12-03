@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading;
-using System.Web;
-using BotWars.Controllers;
 using BotWars.Services;
 using StructureMap;
 using StructureMap.Graph;
+using log4net;
 
 namespace BotWars.App_Start
 {
@@ -20,12 +19,20 @@ namespace BotWars.App_Start
 
         private static Container DefaultContainer()
         {
-            return new Container(x => x.Scan(scan =>
+            log4net.Config.XmlConfigurator.Configure();
+
+            return new Container(x =>
                 {
-                    scan.TheCallingAssembly();
-                    scan.WithDefaultConventions();
-                    scan.AssemblyContainingType<IBotManager>();
-                }));
+                    x.For<ILog>().Use(LogManager.GetLogger(typeof(WebApiApplication)));
+
+                    x.Scan(scan =>
+                        {
+                            scan.TheCallingAssembly();
+                            scan.WithDefaultConventions();
+                            scan.AssemblyContainingType<IBotManager>();
+                        });
+
+                });
         }
     }
 }

@@ -2,6 +2,8 @@
 using BotWars.Models;
 using BotWars.Services;
 using NUnit.Framework;
+using log4net.Core;
+using log4net.Repository.Hierarchy;
 
 namespace Tests
 {
@@ -12,7 +14,7 @@ namespace Tests
         public void should_manage_a_bot()
         {
             var bot = new Bot("Bot", 1, 1);
-            var botmanager = new BotManager();
+            var botmanager = new BotManager(null);
             botmanager.AddBot(bot);
 
             Assert.That(botmanager.Move(), Is.EqualTo("CALL"));

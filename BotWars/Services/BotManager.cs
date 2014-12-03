@@ -1,11 +1,24 @@
 ﻿using System.Runtime.Caching;
 using BotWars.Models;
+using log4net;
 
 namespace BotWars.Services
 {
     public class BotManager : IBotManager
     {
+        private readonly ILog _log;
         private readonly ObjectCache _cache = MemoryCache.Default;
+
+
+        public BotManager(ILog log)
+        {
+            _log = log;
+        }
+
+        public BotManager()
+        {
+            
+        }
 
         public Bot Bot
         {
@@ -18,6 +31,7 @@ namespace BotWars.Services
 
         public void AddBot(Bot bot)
         {
+            if (_log != null) _log.Info("Created " + bot.Name);
             _cache.Set("Bot", bot, new CacheItemPolicy());
         }
 
@@ -28,12 +42,17 @@ namespace BotWars.Services
             {
                 throw new BotNotCreatedException();
             }
-            return bot.Move();
+            
+            var move = bot.Move();
+            if (_log != null) _log.Info("Move " + move);
+            return move;
         }
 
         public void Update(string command, string data)
         {
             var bot = (Bot)_cache.Get("Bot");
+
+            if (_log != null) _log.Info(bot.Name + " " + command + " "+ data);
 
             if (bot == null)
             {
